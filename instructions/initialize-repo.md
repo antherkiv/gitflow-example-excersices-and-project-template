@@ -1,20 +1,15 @@
 # Initialize our example repository
 
-- Clone instructions repository:
+- Create the repo folder and move to it
 ~~~~
-$ git clone https://github.com/antherkiv/gitflow-example-excersices-and-project-template.git
-~~~~
-
-- Remove old git configuration:
-~~~~
-$ rm -rf .git
-$ rm -rf .gitignore
+$ mkdir gitflow-example-project
+$ mv gitflow-example-project
 ~~~~
 
-- Step one Initialize git repo as follows:
+- Initialize git repo as follows:
 ~~~~
 $ git init
-$ git remote add origin ${The url of you own repo}
+$ git remote add origin ${The url of you clean repo}
 $ git fecth origin
 ~~~~
 
