@@ -3,7 +3,7 @@
 - Create the repo folder and move to it
 ~~~~
 $ mkdir gitflow-example-project
-$ mv gitflow-example-project
+$ cd gitflow-example-project
 ~~~~
 
 - Initialize git repo as follows:
