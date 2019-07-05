@@ -42,4 +42,4 @@ nothing to commit, working tree clean
 
 ---
 
-**We are done** [let's begining with gitflow](./Initialize-npm-project)
+**We are done** [let's begining with gitflow](./Initialize-npm-project.md)
