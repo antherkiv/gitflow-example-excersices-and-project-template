@@ -131,6 +131,32 @@ $ git push
 $ cd gitflow-example
 $ npm start
 ~~~~
-- Debemos obtener algo como lo siguiente:
+- We must obtanied something as follows:
 
 ![react app first render](../images/react-app-first-render.png "First render")
+
+- Install bootstrap react components (inside the react app folder)
+~~~~
+$ npm install --save bootstrap
+$ npm install --save reactstrap react react-dom
+$ npm install --save react-router-dom
+$ npm install --save @gitgraph/react
+~~~~
+
+- Add the following files to the src folder (In your project):
+  1. [MainNavBar.jsx](../react-components/MainNavBar.jsx)
+  2. [Carousel.jsx](../react-components/Carousel.jsx)
+  3. [Home.jsx](../react-components/Home.jsx)
+
+- Replace the App.jsx with the following:
+    [App.jsx](../react-components/App.jsx)
+
+- Commit the changes:
+~~~~
+$ git add -p
+$ git add .
+$ git commit -m "Replaced basid react app structure with own structure"
+$ git push
+~~~~
+
+- Run again the project to see the changes
