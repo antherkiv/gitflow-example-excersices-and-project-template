@@ -31,7 +31,7 @@ $ git push --set-upstream origin master
 $ git status
 ~~~~
 
-The output must be something like follows:
+The output must be something like the following:
 
 ~~~~
 On branch master
