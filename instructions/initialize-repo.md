@@ -10,7 +10,7 @@ $ cd gitflow-example-project
 ~~~~
 $ git init
 $ git remote add origin ${The url of you clean repo}
-$ git fecth origin
+$ git fetch origin
 ~~~~
 
 - Create the file .gitignore:
@@ -20,10 +20,22 @@ $ echo node_modules/** > .gitignore
 $ echo instructions/** > .gitignore
 ~~~~
 
-- Add .gitignore to be tracking by git and commit for the firts time
+- Dowload the next quickly but functional [.gitignore info for node](https://www.gitignore.io/api/node) and paste it with your favorite editor in .gitignore
+
+
+- Add .gitignore to be tracking by git and add your first commit
 ~~~~
 $ git add .gitignore
 $ git commit -m "Initial commit"
-$ git status
 $ git push --set-upstream origin master
+$ git status
+~~~~
+
+The output must be something like follows:
+
+~~~~
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
 ~~~~
