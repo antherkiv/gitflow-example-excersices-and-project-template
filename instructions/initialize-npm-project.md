@@ -149,7 +149,7 @@ $ npm install --save @gitgraph/react
   3. [Home.jsx](../react-components/Home.jsx)
 
 - Replace the App.jsx with the following:
-    [App.jsx](../react-components/App.jsx)
+    [App.js](../react-components/App.js)
 
 - Commit the changes:
 ~~~~
