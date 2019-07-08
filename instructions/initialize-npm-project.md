@@ -145,8 +145,8 @@ $ npm install --save @gitgraph/react
 
 - Add the following files to the src folder (In your project):
   1. [MainNavBar.jsx](../react-components/MainNavBar.jsx)
-  2. [Carousel.jsx](../react-components/Carousel.jsx)
-  3. [Home.jsx](../react-components/Home.jsx)
+  2. [Home.jsx](../react-components/Home.jsx)
+  3. [gitHistory.js](../react-components/gitHistory.js)
 
 - Replace the App.jsx with the following:
     [App.js](../react-components/App.js)
@@ -399,3 +399,197 @@ $ git add .
 $ git commit -m "Added Feature2 to MainNavbar"
 $ git push
 ~~~~
+
+> We finalized  the example feature, so we'll merge every branch into dev
+
+- Go to development branch:
+~~~~console
+$ git checkout development
+~~~~
+- Merge feature branch into development and add a tag
+~~~~console
+$ git merge --no-ff feature/feature1 # --no-ff means no fast forward it's to avoid recursive merge and force to do a merge commit
+$ git push
+$ git tag -a feature1
+$ git push origin feature1
+~~~~
+- Check if the tag was set:
+~~~~console
+$ git tag -l
+~~~~
+- We need to remove the branch from local and remote:
+  - Removing from local:
+  ~~~~console
+  $ git branch --delete feature/feature1
+  ~~~~
+  - Removing from remote:
+  ~~~~console
+  $ git push --delete origin feature/feature1
+  ~~~~
+  - Modify gitHistory file:
+  ~~~~js
+  ...
+    develop.merge({
+      branch: feature2,
+      fastForward: false
+    });
+  ...
+  ~~~~
+
+> Reapeat from Feature2:
+
+- Merge feature branch into development and add a tag
+~~~~console
+$ git merge --no-ff feature/feature2 # --no-ff means no fast forward it's to avoid recursive merge and force to do a merge commit
+~~~~
+
+- Conflict will appear you need to resolve it:
+~~~~console
+$ git mergetool
+~~~~
+- Resolve it and when it's done continue:
+
+~~~~
+$ git merge --continue
+
+$ git push
+$ git tag -a feature2
+$ git push origin feature2
+~~~~
+- Check if the tag was set:
+~~~~console
+$ git tag -l
+~~~~
+- We need to remove the branch from local and remote:
+  - Removing from local:
+  ~~~~console
+  $ git branch --delete feature/feature2
+  ~~~~
+  - Removing from remote:
+  ~~~~console
+  $ git push --delete origin feature/feature2
+  ~~~~
+  - Modify gitHistory file:
+  ~~~~js
+  ...
+    develop.merge({
+      branch: feature2,
+      fastForward: false
+    });
+  ...
+  ~~~~
+
+- Do the quick bug fix removing twice declaration on Link modify gitHistory:
+~~~~js
+...
+  develop.commit("Bugfix removed twice declaration of Link in MainNavBar") // Adding this lines
+...
+~~~~
+
+- From develop do a realease:
+~~~~console
+$	git checkout -b release/new_features
+~~~~
+
+- Cause a bug removing bootstrap.css from App.js
+~~~~jsx
+import Gallery from './Feature2'
+
+// import "bootstrap/dist/css/bootstrap.min.css"; // Just comment it
+
+~~~~
+
+- Modified the gitHistory
+~~~~js
+...
+  const realese1 = gitgraph.branch("realese/new_features");
+  realese1.commit("Bad Changes")
+  master.merge({
+    branch: realese1,
+    fastForward: false
+  });
+...
+~~~~
+
+
+- Commit the bad changes:
+~~~~console
+$ git add .
+$ gi commit -m "Bad Changes"
+$ git push -u origin realese/new_features
+~~~~
+
+- Do the realese:
+~~~~console
+$ git checkout master
+$ git merge --no-ff realese/new_features
+$ git push
+$ git tag -a new_features
+$ git push origin new_features
+$ git checkout develop
+$ git merge --no-ff realese/new_features
+$ git push
+$ git branch --delete realese/new_features
+$ git push --delete origin realese/new_features
+~~~~
+
+- Note everything it's broken and do a hotfix:
+~~~~console
+$ git checkout -b hotfix/new_features
+~~~~
+  - Remove comment from App.js
+  ~~~~jsx
+  import Gallery from './Feature2'
+
+  import "bootstrap/dist/css/bootstrap.min.css"; // Just comment it
+
+  ~~~~
+
+  - modify the history:
+  ~~~~js
+  ...
+    const hotfix = gitgraph.branch("hotfix/new_features");
+    hotfix.commit("Hotfix related with bootstrap.cs")
+  ...
+  ~~~~
+
+  - Commit the good changes:
+  ~~~~console
+  $ git add .
+  $ gi commit -m "Hotfix related with bootstrap.css"
+  $ git push -u origin realese/new_features
+  ~~~~
+
+  - Set the hotfix:
+  ~~~~console
+  $ git checkout master
+  $ git merge --no-ff hotfix/new_features
+  $ git push
+  $ git tag -a new_features
+  $ git push origin -a new_features
+  $ git checkout develop
+  $ git merge --no-ff hotfix/new_features
+  $ git push
+  $ git branch --delete hotfix/new_features
+  $ git push --delete origin hotfix/new_features
+  ~~~~
+
+  - modify the history:
+  ~~~~js
+  ...
+    master.merge({
+      branch: hotfix,
+      fastForward: false
+    });
+    develop.merge({
+      branch: hotfix,
+      fastForward: false
+    });
+  ...
+  ~~~~
+
+You need to get something like this:
+
+
+
+> That's all folks
