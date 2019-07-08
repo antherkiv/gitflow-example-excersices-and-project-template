@@ -590,6 +590,8 @@ $ git checkout -b hotfix/new_features
 
 You need to get something like this:
 
+![react app first render](../images/result.png "Result")
+
 
 
 > That's all folks
