@@ -502,7 +502,7 @@ import Gallery from './Feature2'
 - Modified the gitHistory
 ~~~~js
 ...
-  const realese1 = gitgraph.branch("realese/new_features");
+  const realese1 = gitgraph.branch("release/new_features");
   realese1.commit("Bad Changes")
   master.merge({
     branch: realese1,
@@ -516,21 +516,21 @@ import Gallery from './Feature2'
 ~~~~console
 $ git add .
 $ gi commit -m "Bad Changes"
-$ git push -u origin realese/new_features
+$ git push -u origin release/new_features
 ~~~~
 
 - Do the realese:
 ~~~~console
 $ git checkout master
-$ git merge --no-ff realese/new_features
+$ git merge --no-ff release/new_features
 $ git push
 $ git tag -a new_features
 $ git push origin new_features
 $ git checkout develop
-$ git merge --no-ff realese/new_features
+$ git merge --no-ff release/new_features
 $ git push
-$ git branch --delete realese/new_features
-$ git push --delete origin realese/new_features
+$ git branch --delete release/new_features
+$ git push --delete origin release/new_features
 ~~~~
 
 - Note everything it's broken and do a hotfix:
@@ -557,7 +557,7 @@ $ git checkout -b hotfix/new_features
   ~~~~console
   $ git add .
   $ gi commit -m "Hotfix related with bootstrap.css"
-  $ git push -u origin realese/new_features
+  $ git push -u origin release/new_features
   ~~~~
 
   - Set the hotfix:
