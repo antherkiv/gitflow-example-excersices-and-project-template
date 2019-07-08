@@ -279,3 +279,123 @@ $ git add -p
 $ git commit -m "Added Feature1 to MainNavBar"
 $ git push
 ~~~~
+
+>**Note:** We leave this branch for a moment and we'll get another branch for dev (this work actually is doing at the same time).
+
+- Return to development branch and get feature2 from it
+~~~~console
+$ git checkout development
+$ git checkout -b feature/feature2
+~~~~
+
+- Install pinterest gestalt:
+
+~~~~console
+$ npm install gestalt --save
+~~~~
+
+- Add the next file to source folder [Feature2.jsx](../react-components/Feature2.jsx)
+- Modify git history:
+~~~~js
+...
+  develop.commit("Replaced basic react app structure with own structure");
+
+  const feature2 = gitgraph.branch("feature/feature2"); // Adding this lines
+  feature2.commit("Added Feature.jsx to source");
+...
+~~~~
+
+- Commit the changes:
+~~~~console
+$ git add .
+$ git commit -m "Added Feature.jsx to source"
+$ git push -u origin feature/feature2
+~~~~
+
+- Add Feature to routes in App.js:
+
+  - Modify the imports
+  ~~~~jsx
+  ...
+
+  import Carousel from './Carousel';
+  import Home from './Home';
+  import Gallery from './Feature2'; // Adding this line
+
+  ...
+  ~~~~
+
+  ~~~~jsx
+  ...
+              <Route exact path="/" component={Home} />
+              <Route exact path="/feature2" component={Gallery} /> // Adding this line
+  ...
+  ~~~~
+
+- Modify git history:
+~~~~js
+...
+  feature2.commit("Added Feature.jsx to source");
+  feature2.commit("Added Feature2 to routes") // Adding this lines
+...
+~~~~
+
+- Commit the changes:
+~~~~console
+$ git add .
+$ git commit -m "Added Feature2 to routes"
+$ git push
+~~~~
+
+- Modify the MainNavBar and add a Link to Feature2:
+  - Import Link from 'react-router-dom' as follows:
+    ~~~~jsx
+    import React from "react";
+    import { Link } from 'react-router-dom'; // Adding this line
+
+    import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+    } from "reactstrap";
+
+    ...
+    ~~~~
+  - Modify the code as follows:
+    ~~~~jsx
+    ...
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <NavLink to="/feature2" tag={Link}> // Modifing these lines
+            Feature2
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="https://github.com/reactstrap/reactstrap">
+            Link 1
+        </NavLink>
+      </NavItem>
+    ...
+    ~~~~
+
+- Modify git history:
+~~~~js
+...
+  feature2.commit("Added Feature2 to MainNavbar") // Adding this lines
+...
+~~~~
+
+- Commit the changes:
+~~~~console
+$ git add .
+$ git commit -m "Added Feature2 to MainNavbar"
+$ git push
+~~~~
